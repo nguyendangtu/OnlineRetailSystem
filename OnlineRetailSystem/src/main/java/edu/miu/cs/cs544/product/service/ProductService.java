@@ -1,6 +1,6 @@
-package edu.miu.cs.cs544.service;
+package edu.miu.cs.cs544.product.service;
 
-import edu.miu.cs.cs544.domain.Product;
+import edu.miu.cs.cs544.product.domain.Product;
 
 import java.util.List;
 

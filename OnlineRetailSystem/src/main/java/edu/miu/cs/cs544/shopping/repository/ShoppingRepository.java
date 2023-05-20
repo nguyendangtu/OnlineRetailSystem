@@ -1,6 +1,6 @@
-package edu.miu.cs.cs544.repository;
+package edu.miu.cs.cs544.shopping.repository;
 
-import edu.miu.cs.cs544.domain.ShoppingCart;
+import edu.miu.cs.cs544.shopping.domain.ShoppingCart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

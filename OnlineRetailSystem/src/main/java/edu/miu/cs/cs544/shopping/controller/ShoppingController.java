@@ -1,8 +1,8 @@
-package edu.miu.cs.cs544.controller;
+package edu.miu.cs.cs544.shopping.controller;
 
-import edu.miu.cs.cs544.domain.Product;
-import edu.miu.cs.cs544.domain.ShoppingCart;
-import edu.miu.cs.cs544.service.ShoppingService;
+import edu.miu.cs.cs544.product.domain.Product;
+import edu.miu.cs.cs544.shopping.domain.ShoppingCart;
+import edu.miu.cs.cs544.shopping.service.ShoppingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

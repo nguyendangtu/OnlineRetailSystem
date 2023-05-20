@@ -1,7 +1,7 @@
-package edu.miu.cs.cs544.service;
+package edu.miu.cs.cs544.shopping.service;
 
-import edu.miu.cs.cs544.domain.Product;
-import edu.miu.cs.cs544.domain.ShoppingCart;
+import edu.miu.cs.cs544.product.domain.Product;
+import edu.miu.cs.cs544.shopping.domain.ShoppingCart;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;

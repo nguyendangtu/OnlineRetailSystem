@@ -1,15 +1,13 @@
-package edu.miu.cs.cs544.domain;
+package edu.miu.cs.cs544.shopping.domain;
 
+import edu.miu.cs.cs544.product.domain.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author : JOHNNGUYEN
@@ -19,12 +17,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ShoppingCart {
-
+public class CartLine {
     @Id
     @GeneratedValue
-    private Long shoppingCartNumber;
+    private Long id;
 
-    @OneToMany
-    private List<CartLine> cartLines = new ArrayList();
+    private int quantity;
+
+    @OneToOne
+    private Product product;
 }

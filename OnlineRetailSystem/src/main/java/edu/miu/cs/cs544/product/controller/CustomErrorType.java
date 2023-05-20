@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.controller;
+package edu.miu.cs.cs544.product.controller;
 
 public class CustomErrorType {
     private String errorMessage;

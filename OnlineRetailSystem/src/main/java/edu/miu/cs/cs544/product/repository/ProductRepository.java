@@ -1,6 +1,6 @@
-package edu.miu.cs.cs544.repository;
+package edu.miu.cs.cs544.product.repository;
 
-import edu.miu.cs.cs544.domain.Product;
+import edu.miu.cs.cs544.product.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

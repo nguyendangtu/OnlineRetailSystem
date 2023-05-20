@@ -1,8 +1,8 @@
-package edu.miu.cs.cs544.service.impl;
+package edu.miu.cs.cs544.product.service.impl;
 
-import edu.miu.cs.cs544.domain.Product;
-import edu.miu.cs.cs544.repository.ProductRepository;
-import edu.miu.cs.cs544.service.ProductService;
+import edu.miu.cs.cs544.product.domain.Product;
+import edu.miu.cs.cs544.product.repository.ProductRepository;
+import edu.miu.cs.cs544.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

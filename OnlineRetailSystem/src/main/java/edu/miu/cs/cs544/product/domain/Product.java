@@ -1,9 +1,8 @@
-package edu.miu.cs.cs544.domain;
+package edu.miu.cs.cs544.product.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,17 +11,12 @@ import lombok.NoArgsConstructor;
  * @author : JOHNNGUYEN
  * @since : 5/20/2023, Sat
  **/
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
-public class CartLine {
+public class Product {
     @Id
     @GeneratedValue
     private Long id;
-
-    private int quantity;
-
-    @OneToOne
-    private Product product;
 }
