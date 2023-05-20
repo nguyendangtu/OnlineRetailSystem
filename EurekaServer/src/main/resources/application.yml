@@ -1,0 +1,9 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: eurekaserver
+    appname: DiscoveryService
+  client:
+    register-with-eureka: false
+    fetch-registry: true

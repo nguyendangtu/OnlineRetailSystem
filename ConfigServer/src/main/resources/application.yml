@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: native
+  application:
+    name: ConfigServer
+server:
+  port: 8888
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
