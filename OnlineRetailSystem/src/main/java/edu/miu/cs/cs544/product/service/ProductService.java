@@ -1,8 +1,9 @@
 package edu.miu.cs.cs544.product.service;
 
 import edu.miu.cs.cs544.product.domain.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 /**
  * @author : JOHNNGUYEN
@@ -12,7 +13,11 @@ public interface ProductService {
 
     Product addProduct(Product product);
 
-    Product getProduct(Long productNumber);
+    Product updateProduct(Product product);
 
-    List<Product> getAllProducts();
+    void deleteProduct(Long productId);
+
+    Product getProduct(Long productId);
+
+    Page<Product> getAllProducts(Pageable pageable);
 }

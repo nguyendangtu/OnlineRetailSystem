@@ -11,19 +11,29 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author : JOHNNGUYEN
- * @since : 5/20/2023, Sat
+ * @since : 5/21/2023, Sun
  **/
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CartLine {
+public class OrderLine {
+
     @Id
     @GeneratedValue
     private Long id;
 
     private Integer quantity;
 
+    private Double discountedPrice;
+
     @OneToOne
     private Product product;
+
+    public void checkProductDiscount() {
+        if (product != null && product.getDiscount() != null) {
+            this.discountedPrice = product.getPrice() - (product.getPrice() * product.getDiscount().getPercentageOfDiscount() / 100);
+            System.out.println("Discounted price for product " + product.getName() + ": " + discountedPrice);
+        }
+    }
 }

@@ -1,30 +1,28 @@
-package edu.miu.cs.cs544.shopping.domain;
+package edu.miu.cs.cs544.customer.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 /**
  * @author : JOHNNGUYEN
- * @since : 5/20/2023, Sat
+ * @since : 5/21/2023, Sun
  **/
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
-public class ShoppingCart {
-
+public class CreditCard {
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    private List<CartLine> cartLines = new ArrayList();
+    private String creditCardNumber;
+    private LocalDate expirationDate;
+    private String securityCode;
 }
