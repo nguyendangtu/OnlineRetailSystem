@@ -1,9 +1,12 @@
 package edu.miu.cs.cs544.customer.domain;
 
+import edu.miu.cs.cs544.customer.enums.CustomerAddressType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Objects;
 
 /**
  * @author : JOHNNGUYEN
@@ -28,5 +31,6 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "addressTypeId")
     private AddressType addressType;
+
 
 }

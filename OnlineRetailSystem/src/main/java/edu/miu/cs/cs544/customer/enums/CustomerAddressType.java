@@ -1,20 +1,29 @@
 package edu.miu.cs.cs544.customer.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * @author : JOHNNGUYEN
  * @since : 5/21/2023, Sun
  **/
+
 public enum CustomerAddressType {
     BILLING_ADDRESS("BILLING_ADDRESS"),
-    SHIPPING_ADDRESS("BILLING_ADDRESS");
+    SHIPPING_ADDRESS("SHIPPING_ADDRESS");
 
-    private String type;
+    private final String type;
 
     CustomerAddressType(String type) {
         this.type = type;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    @JsonValue
     public String type() {
         return type;
     }
+
 }

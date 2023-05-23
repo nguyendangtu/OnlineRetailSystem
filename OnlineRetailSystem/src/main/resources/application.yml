@@ -17,7 +17,7 @@ spring:
         username: admin
     jpa:
         hibernate:
-            ddl-auto: create
+            #ddl-auto: create
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL5Dialect
