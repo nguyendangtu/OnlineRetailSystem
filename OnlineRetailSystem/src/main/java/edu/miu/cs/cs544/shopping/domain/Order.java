@@ -1,12 +1,17 @@
 package edu.miu.cs.cs544.shopping.domain;
 
+import edu.miu.cs.cs544.customer.domain.Address;
+import edu.miu.cs.cs544.customer.domain.CreditCard;
+import edu.miu.cs.cs544.customer.domain.Customer;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static org.hibernate.validator.internal.util.CollectionHelper.newHashSet;
 
 /**
  * @author : JOHNNGUYEN
@@ -16,19 +21,30 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="orders")
+@Builder
+@EqualsAndHashCode(exclude = {"items", "subTotal", "creditCards"})
+@Table(name = "orders")
 public class Order {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String orderNumber;
-
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany
-    private List<OrderLine> orderLines = new ArrayList();
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToOne
+    private CreditCard paymentMethod;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "order_id")
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    private double totalPrice;
+
+
 }
