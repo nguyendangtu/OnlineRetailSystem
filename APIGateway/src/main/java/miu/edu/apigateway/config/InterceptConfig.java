@@ -10,6 +10,7 @@ import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
@@ -34,7 +35,7 @@ public class InterceptConfig implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        if ("OPTIONS".equals(exchange.getRequest().getMethod())) {
+        if (HttpMethod.OPTIONS.equals(exchange.getRequest().getMethod())) {
             exchange.getResponse().setStatusCode(HttpStatusCode.valueOf(HttpStatus.SC_OK));
             return chain.filter(exchange);
         } else {
