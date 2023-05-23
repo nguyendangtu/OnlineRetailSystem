@@ -1,7 +1,7 @@
 package miu.edu.apigateway.controller;
 
-import miu.edu.apigateway.service.JwtGeneratorInterface;
 import miu.edu.apigateway.domain.User;
+import miu.edu.apigateway.service.JwtGeneratorInterface;
 import miu.edu.apigateway.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> postUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
             userService.saveUser(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -41,12 +41,12 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
-            if (user.getUserName() == null || user.getPassword() == null) {
-                throw new Exception("UserName or Password is Empty");
+            if (user.getUsername() == null || user.getPassword() == null) {
+                throw new Exception("Username or Password is Empty");
             }
-            User userData = userService.getUserByNameAndPassword(user.getUserName(), user.getPassword());
+            User userData = userService.getUserByNameAndPassword(user.getUsername(), user.getPassword());
             if (userData == null) {
-                throw new Exception("UserName or Password is Invalid");
+                throw new Exception("Username or Password is Invalid");
             }
             return new ResponseEntity<>(jwtGenerator.generateToken(user), HttpStatus.OK);
         } catch (Exception e) {

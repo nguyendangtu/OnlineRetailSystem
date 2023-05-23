@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByNameAndPassword(String name, String password) throws Exception {
-        User user = userRepository.findByUserNameAndPassword(name, password);
+        User user = userRepository.findByUsernameAndPassword(name, password);
         if (user == null) {
             throw new Exception("Invalid id and password");
         }

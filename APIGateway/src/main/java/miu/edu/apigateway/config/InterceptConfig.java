@@ -58,7 +58,7 @@ public class InterceptConfig implements WebFilter {
     }
 
     public boolean isValidPath(String path) {
-        return "/login".equalsIgnoreCase(path) || "/register".equalsIgnoreCase(path);
+        return path.contains("/login") || path.contains("/register");
     }
 
     public Mono<Void> verifyToken(ServerWebExchange exchange, WebFilterChain chain, String authHeader) {
@@ -66,7 +66,7 @@ public class InterceptConfig implements WebFilter {
         Claims claims = Jwts.parser().setSigningKey("secret").parseClaimsJws(token).getBody();
         if (null != claims) {
             String name = claims.getSubject();
-            User user = userRepository.findByUserName(name);
+            User user = userRepository.findByUsername(name);
             List<Role> roles = roleRepository.findByName(user.getRole());
             List<String> paths = new ArrayList<>();
             boolean isUnauthorized = false;
