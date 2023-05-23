@@ -27,16 +27,10 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-   /// @PostMapping
-//    public ResponseEntity<?> createAddress(@PathVariable Long customerId, @RequestBody Address address) {
-//        List<Address> result = addressService.addAddress(customerId, address);
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
-
     @PostMapping("/billing")
     public ResponseEntity<?> createBillingAddress(@PathVariable Long customerId, @RequestBody Address address) {
         Address result = addressService.addBillingAddress(customerId, address);
-        if(result != null)
+        if (result != null)
             return new ResponseEntity<>(result, HttpStatus.OK);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("customer with ID" + customerId + " do not exist");
     }
@@ -44,7 +38,7 @@ public class AddressController {
     @PostMapping("/shipping")
     public ResponseEntity<?> createShippingAddress(@PathVariable Long customerId, @RequestBody Address address) {
         List<Address> addressList = addressService.addShippingAddress(customerId, address);
-        if(addressList != null)
+        if (addressList != null)
             return ResponseEntity.ok().body(addressList);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("customer with ID" + customerId + " do not exist");
     }
@@ -58,16 +52,16 @@ public class AddressController {
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
 
-    @PutMapping("/{AddressNumber}")
-    public ResponseEntity<?> updateAddress(@PathVariable Long customerId, @PathVariable Long AddressNumber, @RequestBody Address address) {
-        address = addressService.updateAddress(customerId,address);
+    @PutMapping("/{addressNumber}")
+    public ResponseEntity<?> updateAddress(@PathVariable Long customerId, @PathVariable Long addressNumber, @RequestBody Address address) {
+        address = addressService.updateAddress(customerId, address);
         if (address == null) {
-            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Address with AddressNumber = " + AddressNumber + " is not available"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Address with AddressNumber = " + addressNumber + " is not available"), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{AddressNumber}")
+    @DeleteMapping("/{addressNumber}")
     public ResponseEntity<?> deleteAddress(@PathVariable Long customerId, @PathVariable Long addressNumber) {
         addressService.deleteAddress(customerId, addressNumber);
         return new ResponseEntity<>(HttpStatus.OK);

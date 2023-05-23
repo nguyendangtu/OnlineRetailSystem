@@ -14,6 +14,7 @@ public interface CreditCardService {
     CreditCard updateCreditCard(long id, CreditCard creditCard);
 
     void deleteCreditCard(long id);
+
     List<CreditCard> getCreditCard();
 
     Page<CreditCard> getAllCreditCards(Pageable pageable);

@@ -24,9 +24,15 @@ public class CreditCard {
     private LocalDate expirationDate;
     private String securityCode;
 
-    @ManyToOne
-    private Customer customer;
+    /*@ManyToOne
+    private Customer customer;*/
 
     public CreditCard(String s) {
+    }
+
+    public CreditCard(String creditCardNumber, LocalDate expirationDate, String securityCode) {
+        this.creditCardNumber = creditCardNumber;
+        this.expirationDate = expirationDate;
+        this.securityCode = securityCode;
     }
 }

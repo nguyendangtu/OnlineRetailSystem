@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/customer/{customerId}/creditCard")
 public class CreditCardController {
 
-@Autowired
+    @Autowired
     CreditCardService creditCardService;
 
     public CreditCardService getCreditCardService() {
@@ -25,27 +25,29 @@ public class CreditCardController {
 
     @PostMapping
     public ResponseEntity<?> createCreditCard(@PathVariable Long customerID, @RequestBody CreditCard creditCard) {
-            List<CreditCard> result = creditCardService.addCreditCard(customerID, creditCard);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+        List<CreditCard> result = creditCardService.addCreditCard(customerID, creditCard);
+        return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCreditcard(@PathVariable("id") Long creditCardNumber, @RequestBody CreditCard creditCard){
-            creditCard = creditCardService.updateCreditCard(creditCardNumber, creditCard);
-            if (creditCard == null) {
-                return new ResponseEntity<CreditCard>(new CreditCard("CreditCards with CreditCards = " + creditCardNumber + " is not available"), HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(creditCard, HttpStatus.OK);
+    public ResponseEntity<?> updateCreditcard(@PathVariable("id") Long creditCardNumber, @RequestBody CreditCard creditCard) {
+        creditCard = creditCardService.updateCreditCard(creditCardNumber, creditCard);
+        if (creditCard == null) {
+            return new ResponseEntity<CreditCard>(new CreditCard("CreditCards with CreditCards = " + creditCardNumber + " is not available"), HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(creditCard, HttpStatus.OK);
+    }
 
 
     @GetMapping
     public ResponseEntity<?> getAllCreditCards(Pageable pageable) {
-    Page<CreditCard> creditCardsList = creditCardService.getAllCreditCards(pageable);
-    return new ResponseEntity<>(creditCardsList, HttpStatus.OK);
-}
+        Page<CreditCard> creditCardsList = creditCardService.getAllCreditCards(pageable);
+        return new ResponseEntity<>(creditCardsList, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
-    public  ResponseEntity<?> deleteCreditCard(@PathVariable("id") Long creditCardNumber){
+    public ResponseEntity<?> deleteCreditCard(@PathVariable("id") Long creditCardNumber) {
         creditCardService.deleteCreditCard(creditCardNumber);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -25,12 +25,13 @@ public class ReviewController {
     }
 
     @GetMapping("/{reviewId}")
-    public ResponseEntity<?> getReview( @PathVariable Long reviewTitle) {
+    public ResponseEntity<?> getReview(@PathVariable Long reviewTitle) {
         Review review = reviewService.getReview(reviewTitle);
         return new ResponseEntity<>(reviewTitle, HttpStatus.OK);
     }
+
     @GetMapping
-    public ResponseEntity<?> getAllReviews( Pageable pageable) {
+    public ResponseEntity<?> getAllReviews(Pageable pageable) {
         Page<Review> reviewList = reviewService.getAllReviews(pageable);
         return new ResponseEntity<>(reviewList, HttpStatus.OK);
     }

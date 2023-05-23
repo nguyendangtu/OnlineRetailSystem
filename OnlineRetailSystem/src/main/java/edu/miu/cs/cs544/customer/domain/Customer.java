@@ -31,15 +31,22 @@ public class Customer {
     private String contactNumber;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="billingAddressId")
+    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "billingAddressId")
     private Address billingAddress;
 
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name = "shippingAddressId")
-    private List<Address> shippingAddress=new ArrayList<>();
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customerId")
+    private List<Address> shippingAddress = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "creditCardId")
+    @JoinColumn(name = "customerId")
     private List<CreditCard> creditCard;
 
+    public Customer(String firstName, String lastName, String email, String contactNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.contactNumber = contactNumber;
+    }
 }

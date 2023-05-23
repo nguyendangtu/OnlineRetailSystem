@@ -1,12 +1,10 @@
 package edu.miu.cs.cs544.customer.domain;
 
-import edu.miu.cs.cs544.customer.enums.CustomerAddressType;
+import edu.miu.cs.cs544.customer.enums.AddressType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Objects;
 
 /**
  * @author : JOHNNGUYEN
@@ -28,9 +26,14 @@ public class Address {
     private String ZipCode;
     private String country;
 
-    @ManyToOne
-    @JoinColumn(name = "addressTypeId")
     private AddressType addressType;
 
-
+    public Address(String street, String city, String state, String zipCode, String country, AddressType addressType) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        ZipCode = zipCode;
+        this.country = country;
+        this.addressType = addressType;
+    }
 }

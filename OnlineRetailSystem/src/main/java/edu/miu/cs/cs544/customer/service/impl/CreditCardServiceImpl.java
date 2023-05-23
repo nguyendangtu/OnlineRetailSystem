@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class CreditCardServiceImpl implements CreditCardService {
     @Autowired
@@ -18,22 +19,21 @@ public class CreditCardServiceImpl implements CreditCardService {
     @Autowired
     private CustomerRepository customerRepository;
 
-
     @Override
     public List<CreditCard> addCreditCard(Long customerId, CreditCard creditCard) {
-     Customer customer =customerRepository.findById(customerId).orElse(null);
-      if(customer!=null){
-          customer.getCreditCard().add(creditCard);
-        customer=customerRepository.save(customer);
-        return customer.getCreditCard();
-      }
-      return null;
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if (customer != null) {
+            customer.getCreditCard().add(creditCard);
+            customer = customerRepository.save(customer);
+            return customer.getCreditCard();
+        }
+        return null;
     }
 
     @Override
     public CreditCard updateCreditCard(long id, CreditCard creditCard) {
         CreditCard creditCard1 = creditCardRepository.findById(id).orElse(null);
-        if (creditCard1 != null){
+        if (creditCard1 != null) {
             creditCardRepository.save(creditCard1);
         }
         return null;
@@ -54,7 +54,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     @Override
     public Page<CreditCard> getAllCreditCards(Pageable pageable) {
 
-            return creditCardRepository.findAll(pageable);
-        }
+        return creditCardRepository.findAll(pageable);
     }
+}
 

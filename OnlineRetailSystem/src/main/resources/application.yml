@@ -19,10 +19,12 @@ spring:
     jpa:
         hibernate:
             #ddl-auto: create
+            format_sql: true
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL5Dialect
         show-sql: true
+
 
 eureka:
     instance:
@@ -43,6 +45,6 @@ app:
 logging:
     level:
         org:
-            springframework: INFO
-        root: INFO
+            springframework: info
+        root: info
 

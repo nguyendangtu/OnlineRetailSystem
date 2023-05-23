@@ -11,8 +11,6 @@ import java.util.List;
  * @since : 5/21/2023, Sun
  **/
 public interface AddressService {
-   // List<Address> addAddress(Long customerId, Address address);
-
 
     List<Address> addShippingAddress(Long customerId, Address address);
 
