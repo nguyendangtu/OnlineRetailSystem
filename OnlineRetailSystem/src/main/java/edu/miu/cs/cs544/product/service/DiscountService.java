@@ -9,8 +9,7 @@ public interface DiscountService {
 
     Discount addDiscount(Long productId, Discount percentageOfDiscount);
 
-    Discount updateDiscount(Long productId,Double percentageOfDiscount);
-
+    Discount updateDiscount(Long discountId, Double percentageOfDiscount);
 
     Discount getDiscount(Long discountId);
 

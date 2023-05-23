@@ -37,26 +37,26 @@ public class DiscountServiceImpl implements DiscountService {
     public Discount addDiscount(Long producId, Discount discount) {
 
         Product product = productRepository.getById(producId);
-        if(product!=null){
+        if (product != null && product.getDiscount() == null) {
             Discount newdiscount = discountrepository.save(discount);
 
-           product.setDiscount(newdiscount);
-        return  productRepository.save(product).getDiscount();
+            product.setDiscount(newdiscount);
+            return productRepository.save(product).getDiscount();
 
         }
         return null;
     }
 
     @Override
-    public Discount updateDiscount(Long productId, Double percentageOfDiscount) {
+    public Discount updateDiscount(Long discountId, Double percentageOfDiscount) {
+        Discount discount = discountrepository.findById(discountId).orElse(null);
+        if (null != discount) {
+            discount.setPercentageOfDiscount(percentageOfDiscount);
+            return discountrepository.save(discount);
+        }
+        return null;
 
-        Product product = productRepository.findById(productId).get();
-        product.setDiscount(new Discount(percentageOfDiscount));
-        productRepository.save(product);
-
-        return discountrepository.save(new Discount());
     }
-
 
 
     @Override

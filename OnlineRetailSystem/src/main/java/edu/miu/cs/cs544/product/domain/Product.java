@@ -24,7 +24,7 @@ public class Product {
     private String barcodeNumber;
     private Integer quantityInStock;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "discountId")
     private Discount discount;
 
