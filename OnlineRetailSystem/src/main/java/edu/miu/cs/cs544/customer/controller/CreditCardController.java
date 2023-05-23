@@ -38,14 +38,15 @@ public class CreditCardController {
             return new ResponseEntity<>(creditCard, HttpStatus.OK);
         }
 
-    @DeleteMapping("/{id}")
-    public  ResponseEntity<?> deleteCreditCard(@PathVariable("id") Long creditCardNumber){
-        creditCardService.deleteCreditCard(creditCardNumber);
-        return new ResponseEntity<>(HttpStatus.OK);
-}
+
     @GetMapping
     public ResponseEntity<?> getAllCreditCards(Pageable pageable) {
     Page<CreditCard> creditCardsList = creditCardService.getAllCreditCards(pageable);
     return new ResponseEntity<>(creditCardsList, HttpStatus.OK);
 }
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<?> deleteCreditCard(@PathVariable("id") Long creditCardNumber){
+        creditCardService.deleteCreditCard(creditCardNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
