@@ -29,9 +29,9 @@ public class APIGatewayApplication implements CommandLineRunner {
         roleRepository.save(role);
         role = new Role("PRODUCT", "/product/**");
         roleRepository.save(role);
-        role = new Role("SHOPPING", "/shopping");
+        role = new Role("SHOPPING", "/orders");
         roleRepository.save(role);
-        role = new Role("SHOPPING", "/shopping/**");
+        role = new Role("SHOPPING", "/orders/**");
         roleRepository.save(role);
 
         role = new Role("ADMIN", "/customer");
@@ -42,9 +42,9 @@ public class APIGatewayApplication implements CommandLineRunner {
         roleRepository.save(role);
         role = new Role("ADMIN", "/product/**");
         roleRepository.save(role);
-        role = new Role("ADMIN", "/shopping");
+        role = new Role("ADMIN", "/orders");
         roleRepository.save(role);
-        role = new Role("ADMIN", "/shopping/**");
+        role = new Role("ADMIN", "/orders/**");
         roleRepository.save(role);
     }
 }

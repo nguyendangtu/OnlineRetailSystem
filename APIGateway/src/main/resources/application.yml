@@ -20,7 +20,7 @@ spring:
         - id: OnlineRetailSystem
           uri: lb://OnlineRetailSystem
           predicates:
-            - Path=/customer/**,/product/**,/shopping/**,/carts/**
+            - Path=/customer/**,/product/**,/orders/**
 
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
