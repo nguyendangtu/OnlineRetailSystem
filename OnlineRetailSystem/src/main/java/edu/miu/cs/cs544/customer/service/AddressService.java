@@ -11,9 +11,14 @@ import java.util.List;
  * @since : 5/21/2023, Sun
  **/
 public interface AddressService {
-    List<Address> addAddress(Long customerId, Address address);
+   // List<Address> addAddress(Long customerId, Address address);
 
-    Address updateAddress(Address address);
+
+    List<Address> addShippingAddress(Long customerId, Address address);
+
+    Address addBillingAddress(Long customerId, Address address);
+
+    Address updateAddress(Long addressId, Address address);
 
     void deleteAddress(Long customerId, Long addressId);
 

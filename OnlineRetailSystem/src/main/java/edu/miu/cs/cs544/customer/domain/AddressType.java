@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.customer.domain;
 
+import edu.miu.cs.cs544.customer.enums.CustomerAddressType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,4 +23,6 @@ public class AddressType {
     private Long id;
 
     private String name;
+
+   private CustomerAddressType customerAddressType;
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,15 +30,15 @@ public class Customer {
 
     private String contactNumber;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="billingAddressId")
     private Address billingAddress;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "shippingAddressId")
-    private List<Address> shippingAddress;
+    private List<Address> shippingAddress=new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "creditCardId")
     private List<CreditCard> creditCard;
 

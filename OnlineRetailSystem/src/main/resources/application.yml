@@ -7,6 +7,7 @@ spring:
         user:
             name: user
             password: pass
+
     cloud:
         config:
             url: http://localhost:8888
@@ -17,7 +18,7 @@ spring:
         username: admin
     jpa:
         hibernate:
-            ddl-auto: create
+            #ddl-auto: create
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL5Dialect
@@ -33,7 +34,7 @@ eureka:
             defaultZone: http://localhost:8761/eureka/
 
 app:
-    name: Online Retail System
+    name: OnlineRetailSystem
     server:
         name: OnlineRetailSystem_Group1_Server
         url: http://localhost:8080
