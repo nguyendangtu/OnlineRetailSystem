@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ReviewService {
 
-    Review createReview(Review review);
+    Review createReview(Long customerId, Review review);
 
     Review getReview(Long reviewId);
 

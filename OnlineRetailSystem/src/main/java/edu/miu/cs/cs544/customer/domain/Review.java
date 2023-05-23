@@ -22,10 +22,10 @@ public class Review {
     @GeneratedValue
     private Long id;
 
-    private Long title;
+    private String title;
     private String description;
     private Integer numberOfStars;
-    private LocalDate date;
+    private String date;
 
     @OneToOne
     @JoinColumn(name = "customerId")
@@ -34,4 +34,11 @@ public class Review {
     @OneToOne
     @JoinColumn(name = "productId")
     private Product product;
+
+    public Review(String title, String description, Integer numberOfStars, String date) {
+        this.title = title;
+        this.description = description;
+        this.numberOfStars = numberOfStars;
+        this.date = date;
+    }
 }

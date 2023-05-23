@@ -1,6 +1,5 @@
 package edu.miu.cs.cs544.customer.service;
 
-import edu.miu.cs.cs544.customer.domain.Address;
 import edu.miu.cs.cs544.customer.domain.CreditCard;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +14,7 @@ public interface CreditCardService {
 
     void deleteCreditCard(long id);
 
-    List<CreditCard> getCreditCard();
+    CreditCard getCreditCard(Long creditCardNumber);
 
     Page<CreditCard> getAllCreditCards(Pageable pageable);
 }

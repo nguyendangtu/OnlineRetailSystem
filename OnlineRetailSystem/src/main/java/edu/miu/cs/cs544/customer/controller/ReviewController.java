@@ -1,6 +1,5 @@
 package edu.miu.cs.cs544.customer.controller;
 
-import edu.miu.cs.cs544.customer.domain.Address;
 import edu.miu.cs.cs544.customer.domain.Review;
 import edu.miu.cs.cs544.customer.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +17,15 @@ public class ReviewController {
     ReviewService reviewService;
 
     @PostMapping
-    public ResponseEntity<?> createReview(@RequestBody Review review) {
-        Review result = reviewService.createReview(review);
-
+    public ResponseEntity<?> createReview(@PathVariable Long customerId, @RequestBody Review review) {
+        Review result = reviewService.createReview(customerId, review);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/{reviewId}")
-    public ResponseEntity<?> getReview(@PathVariable Long reviewTitle) {
-        Review review = reviewService.getReview(reviewTitle);
-        return new ResponseEntity<>(reviewTitle, HttpStatus.OK);
+    public ResponseEntity<?> getReview(@PathVariable Long reviewId) {
+        Review review = reviewService.getReview(reviewId);
+        return new ResponseEntity<>(review, HttpStatus.OK);
     }
 
     @GetMapping

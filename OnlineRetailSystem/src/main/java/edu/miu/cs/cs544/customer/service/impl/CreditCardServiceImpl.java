@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 public class CreditCardServiceImpl implements CreditCardService {
+
     @Autowired
     private CreditCardRepository creditCardRepository;
     @Autowired
@@ -23,6 +24,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     public List<CreditCard> addCreditCard(Long customerId, CreditCard creditCard) {
         Customer customer = customerRepository.findById(customerId).orElse(null);
         if (customer != null) {
+            creditCard = creditCardRepository.save(creditCard);
             customer.getCreditCard().add(creditCard);
             customer = customerRepository.save(customer);
             return customer.getCreditCard();
@@ -33,22 +35,20 @@ public class CreditCardServiceImpl implements CreditCardService {
     @Override
     public CreditCard updateCreditCard(long id, CreditCard creditCard) {
         CreditCard creditCard1 = creditCardRepository.findById(id).orElse(null);
-        if (creditCard1 != null) {
-            creditCardRepository.save(creditCard1);
+        if (creditCard1 != null && creditCard1.getId() == id) {
+            return creditCardRepository.save(creditCard);
         }
         return null;
     }
 
     @Override
     public void deleteCreditCard(long id) {
-        CreditCard creditCard = creditCardRepository.findById(id).orElse(null);
-        creditCardRepository.delete(creditCard);
+        creditCardRepository.deleteById(id);
     }
 
     @Override
-    public List<CreditCard> getCreditCard() {
-        List<CreditCard> creditCardList = creditCardRepository.findAll();
-        return creditCardList;
+    public CreditCard getCreditCard(Long creditCardNumber) {
+        return creditCardRepository.findById(creditCardNumber).orElse(null);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "customerId")
-    private List<CreditCard> creditCard;
+    private List<CreditCard> creditCard = new ArrayList<>();
 
     public Customer(String firstName, String lastName, String email, String contactNumber) {
         this.firstName = firstName;
