@@ -11,26 +11,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Customers/reviews")
-public class ReviewContrller {
+@RequestMapping("/customer/{customerId}/review")
+public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
 
-    @GetMapping()
+    @PostMapping
     public ResponseEntity<?> createReview(@RequestBody Review review) {
         Review result = reviewService.createReview(review);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping()
-    public ResponseEntity<?> getReview(@PathVariable Long reviewID, @PathVariable Long reviewTitle) {
+    @GetMapping("/{reviewId}")
+    public ResponseEntity<?> getReview( @PathVariable Long reviewTitle) {
         Review review = reviewService.getReview(reviewTitle);
         return new ResponseEntity<>(reviewTitle, HttpStatus.OK);
     }
-    @GetMapping()
-    public ResponseEntity<?> getAllReviews(@PathVariable Long reviewId, Pageable pageable) {
+    @GetMapping
+    public ResponseEntity<?> getAllReviews( Pageable pageable) {
         Page<Review> reviewList = reviewService.getAllReviews(pageable);
         return new ResponseEntity<>(reviewList, HttpStatus.OK);
     }

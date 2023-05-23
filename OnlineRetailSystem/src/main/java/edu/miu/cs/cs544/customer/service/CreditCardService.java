@@ -8,9 +8,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface CreditCardService {
-    CreditCard addCreditCard(CreditCard creditCard);
 
-    CreditCard updateCreditCard(CreditCard creditCard);
+    List<CreditCard> addCreditCard(Long customerId, CreditCard creditCard);
+
+    CreditCard updateCreditCard(long id, CreditCard creditCard);
 
     void deleteCreditCard(long id);
     List<CreditCard> getCreditCard();
