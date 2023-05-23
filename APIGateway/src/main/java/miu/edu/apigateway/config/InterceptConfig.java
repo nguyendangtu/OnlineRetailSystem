@@ -19,6 +19,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author : JOHNNGUYEN
@@ -74,7 +76,7 @@ public class InterceptConfig implements WebFilter {
             if (null != roles && roles.size() > 0) {
                 String path = exchange.getRequest().getPath().toString();
                 roles.forEach(role -> paths.add(role.getPath()));
-                if (!paths.contains(path.trim())) {
+                if (!verifyURL(paths, path)) {
                     isUnauthorized = true;
                 }
             } else {
@@ -86,6 +88,15 @@ public class InterceptConfig implements WebFilter {
             }
         }
         return chain.filter(exchange);
+    }
+
+    public boolean verifyURL(List<String> pathsConfig, String urlPath) {
+        for (String pathConfig : pathsConfig) {
+            if (urlPath.contains(pathConfig)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
