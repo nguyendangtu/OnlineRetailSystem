@@ -35,4 +35,6 @@ public class Product {
         this.barcodeNumber = barcodeNumber;
         this.quantityInStock = quantityInStock;
     }
+
+
 }

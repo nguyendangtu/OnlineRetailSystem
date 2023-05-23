@@ -16,7 +16,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+
+
     private ProductRepository productRepository;
+
 
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
@@ -25,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addProduct(Product product) {
+
         return productRepository.save(product);
     }
 
@@ -47,5 +51,9 @@ public class ProductServiceImpl implements ProductService {
     public Page<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
 
+
+    }
+    public Product findById(Long productId){
+       return productRepository.findById(productId).get();
     }
 }

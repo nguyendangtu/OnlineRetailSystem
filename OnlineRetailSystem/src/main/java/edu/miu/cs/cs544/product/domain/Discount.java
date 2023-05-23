@@ -23,6 +23,7 @@ public class Discount {
     private Double percentageOfDiscount;
 
     public Discount(Double percentageOfDiscount) {
+
         this.percentageOfDiscount = percentageOfDiscount;
     }
 }
