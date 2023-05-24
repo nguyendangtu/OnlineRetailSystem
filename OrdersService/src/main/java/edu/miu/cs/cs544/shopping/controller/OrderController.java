@@ -39,7 +39,7 @@ public class OrderController {
 
     @PutMapping("/{orderId}/shipping")
     public ResponseEntity<Void> processShipping(@PathVariable long orderId) throws OrderNotFoundException {
-        orderService.setStatus(orderId, OrderStatus.PROCESSED);
+        orderService.setStatus(orderId, OrderStatus.SHIPPED);
         return ResponseEntity.ok().build();
     }
 
