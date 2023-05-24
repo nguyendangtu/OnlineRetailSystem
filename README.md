@@ -67,7 +67,6 @@
                         }
 ##### 4. create a customer: ```http://localhost:8081/customer```
                         {
-                        "id": 10,
                         "firstName": "John",
                         "lastName": "Nguyen",
                         "email": "dangtu.nguyen@miu.edu",
@@ -75,7 +74,6 @@
                         "billingAddress": null,
                         "shippingAddress": [
                             {
-                            "id": 10,
                             "street": "234th st",
                             "city": "fairfield",
                             "state": "IA",
@@ -88,27 +86,23 @@
                         }
 ##### 5. create a product ```http://localhost:8081/product```
                         {
-                        "id": 52,
                         "name": "iphone",
                         "price": 20.0,
                         "image": "black",
                         "barcodeNumber": "44334",
                         "quantityInStock": 4,
                         "discount": {
-                        "id": 52,
-                        "percentageOfDiscount": 0.8
-                        }
+                            "percentageOfDiscount": 0.8
+                            }
                         }
 ##### 6. create a credit card ```http://localhost:8081/customer/1/credit-card```
                         [
                             {
-                            "id": 1,
                             "creditCardNumber": "554326789",
                             "expirationDate": "01/2012",
                             "securityCode": "442"
                             },
                             {
-                            "id": 2,
                             "creditCardNumber": "554326789",
                             "expirationDate": "01/2012",
                             "securityCode": "442"
