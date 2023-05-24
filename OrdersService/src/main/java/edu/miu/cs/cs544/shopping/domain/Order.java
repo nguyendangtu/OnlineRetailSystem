@@ -41,7 +41,7 @@ public class Order {
     @Transient
     private CreditCard paymentMethod;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems = new ArrayList<>();
 

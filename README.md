@@ -65,3 +65,46 @@
                         "date": "12/6/2024",
                         "productId": 1
                         }
+##### 4. create a customer: ```http://localhost:8081/customer```
+                        {
+                        "firstName": "John",
+                        "lastName": "Nguyen",
+                        "email": "dangtu.nguyen@miu.edu",
+                        "contactNumber": "2323",
+                        "billingAddress": null,
+                        "shippingAddress": [
+                            {
+                            "street": "234th st",
+                            "city": "fairfield",
+                            "state": "IA",
+                            "country": "US",
+                            "addressType": "SHIPPING_ADDRESS",
+                            "zipCode": "55454"
+                            }
+                        ],
+                        "creditCard": []
+                        }
+##### 5. create a product ```http://localhost:8081/product```
+                        {
+                        "name": "iphone",
+                        "price": 20.0,
+                        "image": "black",
+                        "barcodeNumber": "44334",
+                        "quantityInStock": 4,
+                        "discount": {
+                            "percentageOfDiscount": 0.8
+                            }
+                        }
+##### 6. create a credit card ```http://localhost:8081/customer/1/credit-card```
+                        [
+                            {
+                            "creditCardNumber": "554326789",
+                            "expirationDate": "01/2012",
+                            "securityCode": "442"
+                            },
+                            {
+                            "creditCardNumber": "554326789",
+                            "expirationDate": "01/2012",
+                            "securityCode": "442"
+                            }
+                        ]
