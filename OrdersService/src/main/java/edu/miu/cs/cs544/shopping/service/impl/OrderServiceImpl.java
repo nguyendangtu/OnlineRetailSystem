@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
                 }
             });
             if (flags[0]) {
-                orderItem.setProduct(productFeignClient.getProduct(orderItem.getId()).getBody());
+                orderItem.setProduct(productFeignClient.getProduct(orderItem.getProductId()).getBody());
                 order.getOrderItems().add(orderItem);
             }
 
