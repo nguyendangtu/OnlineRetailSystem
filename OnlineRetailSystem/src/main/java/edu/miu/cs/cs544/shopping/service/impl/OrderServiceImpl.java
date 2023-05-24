@@ -72,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order addItemToOrder(long orderId, OrderItem orderItem) throws OrderNotFoundException {
         Order order = orderRepository.findById(orderId).orElse(null);
-        if (orderItem.getProduct() == null) {
+        if (orderItem.getProduct() == null || (!order.getOrderStatus().name().equalsIgnoreCase(NEW.name()))) {
             return null;
         }
         Boolean flags[] = new Boolean[1];
