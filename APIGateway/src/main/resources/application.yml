@@ -17,15 +17,23 @@ spring:
               - OPTIONS
               - HEAD
       routes:
-        - id: OnlineRetailSystem
-          uri: lb://OnlineRetailSystem
+        - id: CustomerService
+          uri: lb://CustomerService
           predicates:
-            - Path=/customer/**,/product/**,/orders/**
+            - Path=/customer/**
+        - id: ProductService
+          uri: lb://ProductService
+          predicates:
+            - Path=/product/**
+        - id: OrdersService
+          uri: lb://OrdersService
+          predicates:
+            - Path=/orders/**
 
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
       password: P@ssw0rd
-      url: jdbc:mysql://localhost:3306/online_retail_system?useLegacyDatetimeCode=false&serverTimezone=UTC
+      url: jdbc:mysql://localhost:3306/online_retail_system_apigateway?useLegacyDatetimeCode=false&serverTimezone=UTC
       username: admin
   jpa:
       hibernate:

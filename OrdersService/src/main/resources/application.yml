@@ -1,0 +1,57 @@
+server:
+    port: 9004
+spring:
+    application:
+        name: OrdersService
+    security:
+        user:
+            name: user
+            password: pass
+
+    cloud:
+        config:
+            url: http://localhost:8888
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: P@ssw0rd
+        url: jdbc:mysql://localhost:3306/online_retail_system_orders?useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: admin
+    jpa:
+        hibernate:
+            ddl-auto: update
+            format_sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
+
+
+eureka:
+    instance:
+        preferIpAddress: true
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        service-url:
+            defaultZone: http://localhost:8761/eureka/
+
+feign:
+    product:
+        name: ProductService
+        url: lb://ProductService
+    customer:
+        name: CustomerService
+        url: lb://CustomerService
+app:
+    name: OrdersService
+    server:
+        name: OrdersService_Group1_Server
+        url: http://localhost:9004
+    version: 1.0
+
+logging:
+    level:
+        org:
+            springframework: info
+        root: info
+
