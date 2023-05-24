@@ -61,9 +61,6 @@ jwt:
   secret: secret
   message: Login Successful!
 
-backend:
-  url: /customer,/customer/**,/product,/product/**,/shopping,/shopping/**,/carts,/carts/**
-
 logging:
   level:
     root: info
