@@ -34,8 +34,11 @@ public class ProductController {
     }
 
     @GetMapping("/{productNumber}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long productNumber) {
+    public ResponseEntity<?> getProduct(@PathVariable Long productNumber) {
         Product product = productService.getProduct(productNumber);
+        if (product == null) {
+            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Product with  = " + productNumber + " is not available"), HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
