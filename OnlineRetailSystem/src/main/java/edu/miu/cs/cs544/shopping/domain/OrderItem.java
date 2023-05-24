@@ -28,7 +28,7 @@ public class OrderItem {
 
     private double totalPrice;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id")
     private Product product;
 

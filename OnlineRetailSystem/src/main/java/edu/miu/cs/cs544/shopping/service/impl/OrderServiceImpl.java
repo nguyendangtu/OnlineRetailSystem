@@ -16,9 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
-import static edu.miu.cs.cs544.shopping.domain.OrderStatus.*;
+import static edu.miu.cs.cs544.shopping.domain.OrderStatus.NEW;
+import static edu.miu.cs.cs544.shopping.domain.OrderStatus.PROCESSED;
 
 @Service
 @Transactional
@@ -57,6 +58,11 @@ public class OrderServiceImpl implements OrderService {
             return null;
         } else {
             order.setCustomer(customer);
+            order.getOrderItems().forEach(item -> {
+                if (item.getProduct() != null) {
+                    item.setProduct(productRepository.findById(item.getProduct().getId()).orElse(null));
+                }
+            });
             order.setOrderStatus(NEW);
 
             return orderRepository.save(order);
@@ -65,10 +71,24 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order addItemToOrder(long orderId, OrderItem orderItem) throws OrderNotFoundException {
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
-        if (optionalOrder.isPresent()) {
-            Order order = optionalOrder.get();
-            order.getOrderItems().add(orderItem);
+        Order order = orderRepository.findById(orderId).orElse(null);
+        if (orderItem.getProduct() == null) {
+            return null;
+        }
+        Boolean flags[] = new Boolean[1];
+        flags[0] = true;
+        if (order != null) {
+            order.getOrderItems().forEach(orderItem1 -> {
+                if (orderItem1.getProduct().getId() == orderItem.getProduct().getId()) {
+                    orderItem1.setQuantity(orderItem1.getQuantity() + orderItem.getQuantity());
+                    flags[0] = false;
+                }
+            });
+            if (flags[0]) {
+                orderItem.setProduct(productRepository.findById(orderItem.getProduct().getId()).orElse(null));
+                order.getOrderItems().add(orderItem);
+            }
+
             return orderRepository.save(order);
         } else {
             throw new OrderNotFoundException("Order not found with orderId" + orderId);
@@ -77,10 +97,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order orderPayment(long orderId, CreditCard creditCard) throws OrderNotFoundException {
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
-        if (optionalOrder.isPresent()) {
-            Order order = optionalOrder.get();
-            order.setPaymentMethod(creditCard);
+        Order order = orderRepository.findById(orderId).orElse(null);
+        if (order != null) {
+            List<CreditCard> cards = order.getCustomer().getCreditCard();
+            List<CreditCard> creditCards = cards.stream().filter(c -> c.getCreditCardNumber().equalsIgnoreCase(creditCard.getCreditCardNumber())).collect(Collectors.toList());
+            order.setPaymentMethod(creditCards.stream().findFirst().orElse(null));
             order.setOrderStatus(PROCESSED);
 
             return orderRepository.save(order);
@@ -91,9 +112,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void setStatus(long orderId, OrderStatus status) throws OrderNotFoundException {
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
-        if (optionalOrder.isPresent()) {
-            Order order = optionalOrder.get();
+        Order order = orderRepository.findById(orderId).orElse(null);
+        if (order != null) {
             order.setOrderStatus(status);
             orderRepository.save(order);
         } else {

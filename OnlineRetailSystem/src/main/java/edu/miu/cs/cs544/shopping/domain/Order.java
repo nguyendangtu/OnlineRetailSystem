@@ -1,17 +1,12 @@
 package edu.miu.cs.cs544.shopping.domain;
 
-import edu.miu.cs.cs544.customer.domain.Address;
 import edu.miu.cs.cs544.customer.domain.CreditCard;
 import edu.miu.cs.cs544.customer.domain.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static org.hibernate.validator.internal.util.CollectionHelper.newHashSet;
 
 /**
  * @author : JOHNNGUYEN
@@ -37,7 +32,7 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private CreditCard paymentMethod;
 
     @OneToMany(cascade = CascadeType.PERSIST)
