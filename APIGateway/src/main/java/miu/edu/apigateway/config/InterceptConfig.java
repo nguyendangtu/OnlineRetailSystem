@@ -2,6 +2,7 @@ package miu.edu.apigateway.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import miu.edu.apigateway.domain.Role;
 import miu.edu.apigateway.domain.User;
 import miu.edu.apigateway.repository.RoleRepository;
@@ -19,15 +20,17 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.UUID;
 
 /**
  * @author : JOHNNGUYEN
  * @since : 5/22/2023, Mon
  **/
+@Slf4j
 @Configuration
 public class InterceptConfig implements WebFilter {
+
+    private static final String CORRELATION_ID = "CORRELATION_ID";
 
     @Autowired
     private UserRepository userRepository;
@@ -37,6 +40,14 @@ public class InterceptConfig implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        String correlationId = generateCorrelationID();
+        exchange.getRequest().mutate().header(CORRELATION_ID, generateCorrelationID());
+        String logMessage = new StringBuilder("received method ")
+                .append(exchange.getRequest().getMethod())
+                .append(" ").append(exchange.getRequest().getPath())
+                .append(" with correlationId=")
+                .append(correlationId).toString();
+        log.info(logMessage);
         if (HttpMethod.OPTIONS.equals(exchange.getRequest().getMethod())) {
             exchange.getResponse().setStatusCode(HttpStatusCode.valueOf(HttpStatus.SC_OK));
             return chain.filter(exchange);
@@ -99,5 +110,9 @@ public class InterceptConfig implements WebFilter {
         return false;
     }
 
+    public String generateCorrelationID() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString() + System.currentTimeMillis();
+    }
 
 }
