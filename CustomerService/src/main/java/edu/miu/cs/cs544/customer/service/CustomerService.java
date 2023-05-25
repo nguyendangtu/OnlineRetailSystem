@@ -12,7 +12,7 @@ public interface CustomerService {
 
     Customer addCustomer(Customer customer);
 
-    Customer updateCustomer(Customer customer);
+    Customer updateCustomer(Long customerNumber, Customer customer);
 
     void deleteCustomer(Long customerId);
 

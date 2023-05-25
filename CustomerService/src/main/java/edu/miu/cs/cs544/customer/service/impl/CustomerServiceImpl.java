@@ -28,8 +28,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Customer customer) {
-        return customerRepository.save(customer);
+    public Customer updateCustomer(Long customerNumber, Customer customer) {
+        Customer existingCustomer = customerRepository.findById(customerNumber).orElse(null);
+        if (null != existingCustomer) {
+            existingCustomer.setFirstName(customer.getFirstName());
+            existingCustomer.setLastName(customer.getLastName());
+            existingCustomer.setEmail(customer.getEmail());
+            existingCustomer.setContactNumber(customer.getContactNumber());
+            return customerRepository.save(existingCustomer);
+        }
+        return null;
     }
 
     @Override
